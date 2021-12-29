@@ -12,12 +12,16 @@ function calculatePrice(){
     calculateProfitAndLoss(ip, sq, cp);
 }
 
+function financial(x) {
+  return Number.parseFloat(x).toFixed(2);
+}
+
 function calculateProfitAndLoss(initial,quantity,current){
     if(initial > current){
         var loss = (initial - current) * quantity;
         var lossPercentage = (loss/initial) * 100;
 
-        outputBox.innerText = `Hey the loss is ${loss} and the percent is ${lossPercentage}%`;
+        outputBox.innerText = `Hey the loss is ${loss} and the percent is ${financial(lossPercentage)}%`;
     }else if(initial < current){
         var profit = (current - initial) * quantity;
         var profitPercentage = (profit/initial) * 100;
