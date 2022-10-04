@@ -1,45 +1,72 @@
 
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body{
-    background-color: palegoldenrod;
-    width: 100%;
-    align-items: center;
+    margin:0px 50px;
+   color: antiquewhite;
+   background: black;
+   letter-spacing: 0.6px;
+   
+}
+header{
+    margin-top: 20px;
+    color:white;
     text-align: center;
-    justify-content: center;
+    height: 50px;
 }
-
 .container{
-    display:flex;
-    flex-direction: column;
-    align-self: center;
-    width:100%;
-    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.content h3{
+    margin: 30px;
+}
+label{
+    color: #4cb74c;
+    font-size: 18px;
+}
+input{
+margin:7px 0px 25px 0px;
+width: 300px;
+    padding: 5px;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
 }
 
-h1{
-    margin: 2rem;
+button{
+    padding: 10px;
+    margin-left:0px;
+    background:greenyellow;
+    color: antiquewhite;
+    border:3px solid red;
+    border-radius:5px;
+    font-weight: 700;
+    font-size: x-large;
 }
 
-label, input{
-    padding:0.5rem;
+.result{
+
+    margin: 30px;
+    border-radius: 8px;
+    height: 65px;
 }
 
-#show-Btn{
-    margin:2rem;
-    padding:0.5rem;
-    border-radius: 1rem;
-    width:10rem;
-    cursor:pointer;
+.social {
+    border-top: 1px solid #4cb74c;
+    display: inline;
+    cursor: pointer;
 }
-
-#output{
-    font-size: large;
-    font-weight: 800;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.social a{
+    margin: 010px 50px;
+    text-decoration: none;
+    color: antiquewhite;
+}
+.reset{
+    position: fixed;
+    transform: scale(0.7);
+    right: 0px;
+    bottom: 40px;
 }

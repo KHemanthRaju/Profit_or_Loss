@@ -1,35 +1,73 @@
-const initialPrice = document.querySelector("#initial-price");
-const stocksQuantity = document.querySelector("#quantity");
-const currentPrice = document.querySelector("#current-price");
-const showBtn = document.querySelector("#show-Btn");
-const outputBox = document.querySelector("#output");
+var input = document.querySelectorAll("input");
+var initial = document.querySelector(".initial");
+var quantity = document.querySelector(".quantity");
+var current = document.querySelector(".current");
+var btn = document.querySelector("button");
+var output = document.querySelector(".result");
+var hero = document.querySelector(".hero");
+var resetbtn = document.querySelector(".reset");
 
-function calculatePrice(){
-    var ip = initialPrice.value;
-    var sq = stocksQuantity.value;
-    var cp = currentPrice.value;
-
-    calculateProfitAndLoss(ip, sq, cp);
+function showMsg(msg) {
+  output.innerText = msg;
 }
-
-function financial(x) {
-  return Number.parseFloat(x).toFixed(2);
-}
-
-function calculateProfitAndLoss(initial,quantity,current){
-    if(initial > current){
-        var loss = (initial - current) * quantity;
-        var lossPercentage = (loss/initial) * 100;
-
-        outputBox.innerText = `Hey the loss is ${loss} and the percent is ${financial(lossPercentage)}%`;
-    }else if(initial < current){
-        var profit = (current - initial) * quantity;
-        var profitPercentage = (profit/initial) * 100;
-
-        outputBox.innerText = `Hey the profit is ${profit} and the percent is ${financial(profitPercentage)}%`;
-    }else{
-        outputBox.innerText = `No gain or no loss`;
+function calculatePL(init, quant, curr) {
+  if (curr > init) {
+    //profit
+    var profit = (curr - init) * quant;
+    var percentage = (profit / (init * quant)) * 100;
+    showMsg(
+      `Great Job🥳🎉, You have chosen the right Stock.💹 \nPROFIT = ${profit} \nPROFIT PERCENTAGE= ${percentage.toFixed(
+        2
+      )}%`
+    );
+    //if profit percentage is greater than 30%
+    if (percentage >= 30) {
+      output.style.background = "#03903c";
+      success.play();
+    } else {
+      profitsound.play();
     }
+    hero.style.rotate = "297deg";
+    hero.style.transition = "0.9s";
+  } 
+  else if (curr === init) {
+    //no gain no loss
+    showMsg("No Profit No Loss🤨, It's Okay 🙂");
+    okay.play();
+  } else {
+    //loss
+    var loss = (init - curr) * quant;
+    var lossPercentage = (loss / (init * quant)) * 100;
+    showMsg(
+      `Oh No...😟Look like you need to update your portfolio. 🔻\nLOSS = ${loss} \nLOSS PERCENTAGE = ${lossPercentage.toFixed(
+        2
+      )}%`
+    );
+    losesound.play();
+
+    //if percentage is more than 50
+    if (lossPercentage >= 50) {
+      hero.style.rotate = "103deg";
+      hero.style.transition = "0.9s";
+      output.style.background = "red";
+      hero.style.animation = "shake 0.3s 10";
+      wrong.play();
+    }
+  }
 }
 
-showBtn.addEventListener('click',calculatePrice);
+btn.addEventListener("click", function () {
+  var init = Number(initial.value);
+  var quant = Number(quantity.value);
+  var curr = Number(current.value);
+  if (initial.value == "" || quantity.value == "" || current.value == "") {
+    showMsg("Please enter a valid number");
+  } else if (init <= 0 || quant <= 0 || curr <= 0) {
+    showMsg("Please enter a valid number");
+  } else {
+    calculatePL(init, quant, curr);
+  }
+});
+resetbtn.addEventListener("click",function(){
+  window.location.reload();
+})
